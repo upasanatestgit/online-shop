@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  web:
+       build:
+               context: ./php/online-shopping-system
+               dockerfile: Dockerfile
+       container_name: php_app
+       volumes:
+          - ./php/online-shopping-system:/var/www/html/
+       depends_on: 
+         - db  
+       ports:
+         - 8008:80
+  db:
+          container_name: mysqli
+          image: mysql:latest
+          command: --default-authentication-plugin=mysql_native_password
+          restart: always  
+          volumes:
+             - ./php/online-shopping-system/database/onlineshop.sql:/docker-entrypoint-initdb.d/onlineshop.sql
+          environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: database
+            MYSQL_USER: edureka
+            MYSQL_PASSWORD: admin
+          ports:
+           - 6033:3306
