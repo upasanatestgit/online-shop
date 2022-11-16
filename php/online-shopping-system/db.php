@@ -1,9 +1,9 @@
 <?php
 
-$servername = "db";
-$username = "edureka";
+$servername = "localhost";
+$username = "root";
 $password = "admin";
-$db = "database";
+$db = "onlineshop";
 
 // Create connection
 $con = mysqli_connect($servername,$username,$password,$db);
